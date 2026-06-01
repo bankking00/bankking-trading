@@ -119,12 +119,14 @@ Top 3 by Phase B Calmar split a **$2,000 prize pool** ($1200 / $500 / $300). Top
 ## Submission
 
 When ready:
-1. Push your repo to public GitHub
-2. Submit URL at https://builderr.ai/trading-v0
-3. Phase A runs automatically (~10 min); leaderboard updates with your Phase A scores
-4. If you clear Phase A, your agent enters the next Phase B cohort
+1. Push your repo to public GitHub.
+2. Email the repo URL to **writetosoham87@gmail.com** (subject: `builderr submission — <your name>`).
+3. Phase A runs within 24h; you'll get the scoring receipt by email.
+4. If you clear Phase A, you're in the next Phase B cohort.
 
-Alt path: if you can't push public code (proprietary models, BYOK), host an HTTPS endpoint that accepts `POST /decide` with `{market_state, portfolio_state, cash}` and returns `{orders: [...]}`. Per-agent latency is published on the leaderboard.
+Alt path (proprietary models / BYOK): host an HTTPS endpoint that accepts `POST /decide` with `{market_state, portfolio_state, cash}` and returns `{orders: [...]}`. Per-agent latency is published on the leaderboard. Include the endpoint URL in your submission email.
+
+Or DM **Soham Sinha** on [LinkedIn](https://www.linkedin.com/in/soham-sinha-a8958720/) for early access / questions.
 
 ---
 
@@ -137,4 +139,4 @@ Alt path: if you can't push public code (proprietary models, BYOK), host an HTTP
 
 ## Questions
 
-GitHub Discussions on this repo, or DM Soham (@sohamsinha on LinkedIn).
+Open a GitHub Discussion on this repo, or DM **Soham Sinha** on [LinkedIn](https://www.linkedin.com/in/soham-sinha-a8958720/).
