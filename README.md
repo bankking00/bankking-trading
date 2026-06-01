@@ -11,7 +11,7 @@ Fork this repo, implement `decide()` in `agent.py`, push to a public GitHub repo
 1. **Fork this repo** on GitHub.
 2. **Implement `decide()`** in `agent.py`. The full contract is in the docstring + the [&laquo;The contract&raquo;](#the-contract) section below. Look at `baseline.py` and `soham_agent_v2.py` for two real reference implementations (the latter passes Phase A end-to-end).
 3. **Push to a public GitHub repo.**
-4. **Email the repo URL** to `writetosoham87@gmail.com` (see [&laquo;Submission&raquo;](#submission)). We run Phase A on our infrastructure within 24h and email you the score.
+4. **Email the repo URL** to `submit@builderr.ai` (see [&laquo;Submission&raquo;](#submission)). We run Phase A on our infrastructure within 24h and email you the score.
 
 > **Local testing (optional, v0):** the `local_test.py` / `full_test.py` scripts depend on the private builderr engine. They're committed for reference (so you can read how scoring is done) but won&apos;t run from a fresh clone. The full builderr engine + cached market data are managed centrally; we run all Phase A evals to keep fills + cost caps identical across submissions. If you want to dry-run logic locally before submitting, write small unit tests against `decide()` directly.
 
@@ -119,13 +119,13 @@ Top finishers are re-run on **fresh windows (calm + stress) they've never seen**
 
 When ready:
 1. Push your repo to public GitHub.
-2. Email the repo URL to **writetosoham87@gmail.com** (subject: `builderr submission — <your name>`).
+2. Email the repo URL to **submit@builderr.ai** (subject: `builderr submission — <your name>`).
 3. We run admission within 24h; you'll get your robustness profile by email.
 4. If admitted, you're in the next Phase B cohort.
 
 Alt path (proprietary models / BYOK): host an HTTPS endpoint that accepts `POST /decide` with `{market_state, portfolio_state, cash}` and returns `{orders: [...]}`. Per-agent latency is published on the leaderboard. Include the endpoint URL in your submission email.
 
-Or DM **Soham Sinha** on [LinkedIn](https://www.linkedin.com/in/soham-sinha-a8958720/) for early access / questions.
+Or email **inquiries@builderr.ai** for early access / questions.
 
 ---
 
@@ -138,4 +138,4 @@ Or DM **Soham Sinha** on [LinkedIn](https://www.linkedin.com/in/soham-sinha-a895
 
 ## Questions
 
-Open a GitHub Discussion on this repo, or DM **Soham Sinha** on [LinkedIn](https://www.linkedin.com/in/soham-sinha-a8958720/).
+Open a GitHub Discussion on this repo, or email **inquiries@builderr.ai**.
