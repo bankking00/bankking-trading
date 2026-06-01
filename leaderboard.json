@@ -1,0 +1,44 @@
+{
+  "generated_at_utc": "2026-06-01T15:16:31Z",
+  "as_of_market_date": "2026-06-01",
+  "window_trading_days": 60,
+  "note": "Reference bots, trailing 60 trading days on live market data, refreshed each market day. Ranked by Calmar.",
+  "bots": [
+    {
+      "name": "vol-target",
+      "label": "reference",
+      "ret": 0.0608,
+      "mdd": 0.0212,
+      "sharpe": 4.9071,
+      "calmar": 13.2852,
+      "trades": 5
+    },
+    {
+      "name": "ai-momentum-basket",
+      "label": "house \u00b7 aggressive",
+      "ret": 0.179,
+      "mdd": 0.0797,
+      "sharpe": 4.0451,
+      "calmar": 12.5071,
+      "trades": 8
+    },
+    {
+      "name": "dual-momentum-rotation",
+      "label": "house \u00b7 all-weather",
+      "ret": -0.0156,
+      "mdd": 0.0321,
+      "sharpe": -0.6049,
+      "calmar": -1.9921,
+      "trades": 5
+    },
+    {
+      "name": "sector-rotation",
+      "label": "reference",
+      "ret": -0.0295,
+      "mdd": 0.0397,
+      "sharpe": -1.3264,
+      "calmar": -2.9737,
+      "trades": 3
+    }
+  ]
+}
