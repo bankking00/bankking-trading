@@ -1,14 +1,23 @@
-"""Baseline strategy: equal-weight buy-and-hold of SPY + QQQ on the first tick.
+"""Baseline strategy: equal-weight buy-and-hold of 4 broad ETFs, then hold.
 
-This is the reference any submission has to beat to qualify as "interesting."
-~50% in SPY, ~50% in QQQ, then hold. No leverage, no rebalance.
+This is the simplest thing that actually gets ADMITTED — your 5-minute first
+submission. Rename it to agent.py, run `python preview.py`, see it clear the
+safety bar, and submit. Then iterate to actually compete.
 
-To use as your starting point: rename to agent.py and tweak.
+Why 4 names at 25% each, not 2 at 50%? The concentration cap is <30% per ticker.
+Two equal-weight names = 50% each = an instant breach. Four = 25% each = clean.
+That single rule is the most common reason a naive bot gets rejected — run
+preview.py and you'll watch a 2-name version fail and this one pass.
+
+This buys and holds, so it will score poorly on Calmar in the live test (no
+risk-off, no rotation). See https://builderr.ai/start for the strategy families
+that actually win — then tweak this into one of them.
 """
 from __future__ import annotations
 
 _bought = False
-_TARGETS = ("SPY", "QQQ")
+# Four liquid, broad ETFs — 25% each keeps every position under the 30% cap.
+_TARGETS = ("SPY", "QQQ", "XLK", "XLV")
 
 
 def decide(market_state, portfolio_state, cash):

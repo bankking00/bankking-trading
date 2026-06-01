@@ -9,11 +9,12 @@ Fork this repo, implement `decide()` in `agent.py`, then send us the repo — **
 ## 30-second start
 
 1. **Fork this repo** on GitHub.
-2. **Implement `decide()`** in `agent.py`. The full contract is in the docstring + the [&laquo;The contract&raquo;](#the-contract) section below. Look at `baseline.py` and `soham_agent_v2.py` for two real reference implementations (the latter passes Phase A end-to-end).
-3. **Push to a GitHub repo** — public, or private with a read-only deploy key (your call; [«Submission»](#submission) explains the trade-offs).
-4. **Email the repo URL** to `submit@builderr.ai` (see [&laquo;Submission&raquo;](#submission)). We run Phase A on our infrastructure within 24h and email you the score.
+2. **Implement `decide()`** in `agent.py` — or just rename `baseline.py` to `agent.py` for a 5-minute first submission that gets admitted. The full contract is in the docstring + the [&laquo;The contract&raquo;](#the-contract) section below. `baseline.py`, `example_sector_rotation.py`, and `soham_agent_v2.py` are real reference bots you can read, run, and beat.
+3. **See it clear admission — locally, in ~10 seconds:** run **`python preview.py`**. No engine, no network, no keys, no install. It runs your bot across three real public market windows and prints the same shape of report the real admission email gives you, plus a PASS/FAIL on the safety bar admission actually gates on (clean run, leverage cap, concentration cap, no blow-up). If it says you clear the bar, you're very likely to be admitted.
+4. **Push to a GitHub repo** — public, or private with a read-only deploy key (your call; [«Submission»](#submission) explains the trade-offs).
+5. **Email the repo URL** to `submit@builderr.ai` (see [&laquo;Submission&raquo;](#submission)). We run admission on our infrastructure within 24h and email you the score. You can resubmit and iterate anytime before your cohort locks — your first try is not your last.
 
-> **Test locally before you submit:** run **`python selfcheck.py`** — it needs no engine, no network, and no keys. It loads your `agent.py`, feeds it synthetic daily bars, and checks `decide()` returns well-formed orders and doesn't crash. It&apos;s a smoke test, not the real eval (we run admission centrally on hidden data so it&apos;s identical for everyone), but it catches the dumb bugs first.
+> **`preview.py` vs `selfcheck.py`:** `preview.py` is the one to run — it shows you clearing admission with real numbers. `selfcheck.py` is an even-quicker, data-free smoke test (synthetic bars, just checks `decide()` returns well-formed orders and doesn't crash). Neither is the official eval — we run admission centrally on hidden regimes so it's identical for everyone — but a clean `preview.py` is a strong predictor of admission.
 >
 > **Want proof it&apos;s fair?** Read `fairness_tests.py` — the actual tests from our engine that guarantee *same code → same score* and *same order → same fill, regardless of who sent it*. (`local_test.py` / `full_test.py` are reference only; they need the private engine.)
 
