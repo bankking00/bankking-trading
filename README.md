@@ -2,7 +2,7 @@
 
 Submission template for the **builderr Trading Agent Leaderboard**.
 
-Fork this repo, implement `decide()` in `agent.py`, push to a public GitHub repo, then email the link to `submit@builderr.ai`. Full rules &amp; FAQ: https://builderr.ai/guidelines
+Fork this repo, implement `decide()` in `agent.py`, push to a public GitHub repo, then submit at https://builderr.ai/trading-v0 (or just email the link to `submit@builderr.ai`). Full rules &amp; FAQ: https://builderr.ai/guidelines
 
 ---
 
