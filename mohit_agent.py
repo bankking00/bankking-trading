@@ -21,19 +21,25 @@ from statistics import pstdev
 
 # Risk-on book — the Nasdaq + AI/semis story. (All in the v0 universe.)
 GROWTH = ("QQQ", "NVDA", "SMH", "MSFT", "META", "AAPL", "XLK")
-LEVER = "TQQQ"                       # 3x Nasdaq — the leverage sleeve, capped small
+LEVER = "TQQQ"                       # 3x Nasdaq — primary leverage sleeve
+LEVER2 = "QLD"                       # 2x Nasdaq — second leverage sleeve (deploy the budget)
 # De-risk book — plain index + energy/defensive hedge (no gold in the universe).
 DEFENSIVE = ("QQQ", "XLE", "XLP", "XLU")
 
 BETA = {"TQQQ": 3.0, "SOXL": 3.0, "UPRO": 3.0, "SPXL": 3.0, "QLD": 2.0, "SSO": 2.0}
 
 # ---- knobs ------------------------------------------------------------------
+# We run HOT: lean hard into leveraged Nasdaq. The two real limits are the rules,
+# not timidity: <30% per ticker (so each leveraged sleeve caps ~25%) and <=1.5x
+# beta-adjusted gross (we target 1.40x, leaving a sliver so a normal up-day can't
+# drift over 1.5x and trip the auto-flatten).
 TREND_SMA = 100
 MOM_DAYS = 63                # ~3-month momentum for the daily re-rank
-NAME_CAP = 0.24              # per-name weight cap (< 30% rule)
-TQQQ_CAP = 0.22              # extra cap on the 3x sleeve
-GROSS_CAP = 1.30             # beta-adjusted gross ceiling (rule is 1.50; margin for intraday drift)
-RISKON_NAMES = 5             # how many growth names to hold alongside the levered sleeve
+NAME_CAP = 0.25              # per-name weight cap (margin under the 30% rule)
+TQQQ_CAP = 0.25              # 3x sleeve — substantial, just under the concentration cap
+QLD_CAP = 0.22               # 2x sleeve
+GROSS_CAP = 1.40             # beta-adjusted gross target (rule is 1.50; ~0.1 of headroom)
+RISKON_NAMES = 3             # growth names held alongside the two leverage sleeves
 REBALANCE_EVERY = 1          # reallocate daily (the thesis)
 DEAD_BAND = 0.02
 VOL_LOOKBACK = 10
@@ -74,7 +80,10 @@ def _ann_vol(closes, n):
 def _scale_to_gross(weights):
     """Cap each name, then scale the whole book so beta-adjusted gross <= GROSS_CAP."""
     w = {t: min(NAME_CAP, x) for t, x in weights.items()}
-    w[LEVER] = min(w.get(LEVER, 0.0), TQQQ_CAP)
+    if LEVER in w:
+        w[LEVER] = min(w[LEVER], TQQQ_CAP)
+    if LEVER2 in w:
+        w[LEVER2] = min(w[LEVER2], QLD_CAP)
     gross = sum(x * _beta(t) for t, x in w.items())
     if gross > GROSS_CAP:
         f = GROSS_CAP / gross
@@ -106,7 +115,7 @@ def _target_weights(market_state):
         per = min(NAME_CAP, 0.55 / len(avail))
         return _scale_to_gross({t: per for t in avail})
 
-    # risk-on: TQQQ leverage sleeve + the strongest growth/AI names by momentum
+    # risk-on: both leverage sleeves (TQQQ + QLD) + the strongest AI/growth names.
     ranked = []
     for t in GROWTH:
         m = _ret(_closes(market_state.get(t) or []), MOM_DAYS)
@@ -117,11 +126,11 @@ def _target_weights(market_state):
 
     weights = {}
     if market_state.get(LEVER):
-        weights[LEVER] = TQQQ_CAP                       # lever into Nasdaq
-    if winners:
-        share = (1.0 - TQQQ_CAP) / len(winners)
-        for t in winners:
-            weights[t] = share
+        weights[LEVER] = TQQQ_CAP                       # 3x Nasdaq
+    if market_state.get(LEVER2):
+        weights[LEVER2] = QLD_CAP                       # 2x Nasdaq
+    for t in winners:
+        weights[t] = weights.get(t, 0.0) + 0.10         # AI/growth leaders; scaler trims to gross cap
     return _scale_to_gross(weights) if weights else {}
 
 
