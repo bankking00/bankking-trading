@@ -32,12 +32,15 @@ UNIVERSE = [
     "XLU", "XLRE", "XLC", "KRE", "JPM", "TQQQ", "SOXL", "NVDA", "MSFT", "AAPL", "META",
 ]
 
-# Reference field — file -> (display name, label). All clearly "house/reference".
+# The live field — file -> (display name, label). House/reference bots set the
+# bar; real Round 1 entrants are labeled as such, never disguised as house bots.
 FIELD = [
     ("seed_dual_momentum.py",        "dual-momentum-rotation", "house · all-weather"),
     ("ai_momentum.py",               "ai-momentum-basket",     "house · aggressive"),
     ("example_sector_rotation.py",   "sector-rotation",        "reference"),
     ("example_vol_target.py",        "vol-target",             "reference"),
+    # Real Round 1 entrants (NOT house bots) — scored on the same live window.
+    ("opu_agent.py",                 "opu",                    "round 1 · entrant"),
 ]
 
 EVAL_DAYS = 60       # trailing trading-day window (matches the 60-day live horizon)
@@ -206,7 +209,7 @@ def main() -> int:
         "generated_at_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "as_of_market_date": asof,
         "window_trading_days": EVAL_DAYS,
-        "note": "Reference bots, trailing 60 trading days on live market data, refreshed each market day. Ranked by Calmar.",
+        "note": "House/reference bots set the bar; Round 1 entrants are labeled as entrants. All scored on the same trailing 60 trading days of live market data, refreshed each market day. Ranked by Calmar.",
         "bots": rows,
     }
     OUT.write_text(json.dumps(payload, indent=2))
