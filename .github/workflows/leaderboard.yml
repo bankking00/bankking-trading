@@ -1,10 +1,12 @@
 name: live-leaderboard
 
-# Refresh the reference-bot leaderboard on real market data each weekday after the
-# US close, and commit leaderboard.json. The site reads it. Manual run available too.
+# Refresh the leaderboard on real market data through each US trading day and
+# commit leaderboard.json (the site reads it). Hourly while the US market is open
+# means the numbers genuinely move during the session (the daily bar's last price
+# updates intraday) — not faked motion, just real marks. Manual run available too.
 on:
   schedule:
-    - cron: "0 22 * * 1-5" # ~17:00–18:00 ET, after market close, Mon–Fri (UTC)
+    - cron: "0 13-22 * * 1-5" # hourly ~9:00–18:00 ET (pre-open through after-close), Mon–Fri (UTC)
   workflow_dispatch:
 
 permissions:
