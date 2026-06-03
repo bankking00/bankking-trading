@@ -2,6 +2,8 @@
 
 Submission template for the **builderr Trading Agent Leaderboard**.
 
+> 🟢 **New to coding or trading? Start with [`START_HERE.md`](START_HERE.md)** — a plain-English, 5-minute walkthrough. No finance background, no money, no API key needed.
+
 Fork this repo, implement `decide()` in `agent.py`, then send us the repo — **public or private, your call** (private repos use a read-only deploy key; see [«Submission»](#submission)). Submit at https://builderr.ai/trading-v0 (or just email the link to `submit@builderr.ai`). Full rules &amp; FAQ: https://builderr.ai/guidelines
 
 ---
