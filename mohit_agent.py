@@ -20,7 +20,7 @@ from __future__ import annotations
 from statistics import pstdev
 
 # Risk-on book — the Nasdaq + AI/semis story. (All in the v0 universe.)
-GROWTH = ("QQQ", "NVDA", "SMH", "MSFT", "META", "AAPL", "XLK")
+GROWTH = ("QQQ", "NVDA", "SMH", "MSFT", "META", "AAPL", "XLK", "AVGO", "AMD", "MU", "MRVL")
 LEVER = "TQQQ"                       # 3x Nasdaq — primary leverage sleeve
 LEVER2 = "QLD"                       # 2x Nasdaq — second leverage sleeve (deploy the budget)
 # De-risk book — plain index + energy/defensive hedge (no gold in the universe).

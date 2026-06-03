@@ -95,6 +95,7 @@ So 100% TQQQ = 3x exposure = instant breach. Max 50% TQQQ + 50% cash works (1.5x
 Curated set during v0 (real challenge expands to top ~1000 US equities by liquidity at launch):
 
 - Mega-cap tech: AAPL MSFT GOOGL AMZN META NVDA TSLA
+- AI infra / semis: AVGO AMD MU MRVL
 - Index ETFs: SPY QQQ DIA IWM
 - Sector ETFs: XLK XLF XLE XLV XLI XLY XLP XLU XLRE XLC SMH
 - Banking: KRE JPM BAC C WFC

@@ -47,6 +47,7 @@ So 100% TQQQ = 3× = breach. 50% TQQQ + 50% cash = 1.5× = OK.
 
 ## Universe (what you can trade)
 - **Mega-cap tech:** AAPL MSFT GOOGL AMZN META NVDA TSLA
+- **AI infra / semis:** AVGO AMD MU MRVL
 - **Index ETFs:** SPY QQQ DIA IWM
 - **Sector ETFs:** XLK XLF XLE XLV XLI XLY XLP XLU XLRE XLC SMH
 - **Banking:** KRE JPM BAC C WFC

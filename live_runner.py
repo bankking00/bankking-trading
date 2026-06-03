@@ -30,6 +30,7 @@ OUT = HERE / "leaderboard.json"
 UNIVERSE = [
     "SPY", "QQQ", "SMH", "XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "XLP",
     "XLU", "XLRE", "XLC", "KRE", "JPM", "TQQQ", "SOXL", "QLD", "NVDA", "MSFT", "AAPL", "META",
+    "AVGO", "AMD", "MU", "MRVL",
 ]
 
 # The live field — file -> (display name, label). House/reference bots set the
