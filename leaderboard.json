@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-03T03:35:40Z",
+  "generated_at_utc": "2026-06-03T09:33:40Z",
   "as_of_market_date": "2026-06-02",
   "round_start": "2026-06-02",
   "start_cash": 100000.0,
@@ -8,64 +8,64 @@
     {
       "name": "mohit",
       "label": "round 1 \u00b7 entrant",
-      "equity": 102460.74,
-      "pnl": 2460.74,
+      "equity": 102460.63,
+      "pnl": 2460.63,
       "ret": 0.0246,
       "trades": 5
     },
     {
       "name": "opu",
       "label": "round 1 \u00b7 entrant",
-      "equity": 101102.81,
-      "pnl": 1102.81,
-      "ret": 0.011,
+      "equity": 101106.77,
+      "pnl": 1106.77,
+      "ret": 0.0111,
       "trades": 4
     },
     {
       "name": "sector-rotation",
       "label": "reference",
-      "equity": 100990.34,
-      "pnl": 990.34,
+      "equity": 100994.64,
+      "pnl": 994.64,
       "ret": 0.0099,
       "trades": 4
     },
     {
       "name": "dual-momentum-rotation",
       "label": "house \u00b7 all-weather",
-      "equity": 100899.54,
-      "pnl": 899.54,
+      "equity": 100903.06,
+      "pnl": 903.06,
       "ret": 0.009,
       "trades": 5
     },
     {
       "name": "robert",
       "label": "round 1 \u00b7 entrant",
-      "equity": 100690.85,
-      "pnl": 690.85,
-      "ret": 0.0069,
+      "equity": 100695.47,
+      "pnl": 695.47,
+      "ret": 0.007,
       "trades": 7
     },
     {
       "name": "ai-momentum-basket",
       "label": "house \u00b7 aggressive",
-      "equity": 100430.39,
-      "pnl": 430.39,
-      "ret": 0.0043,
+      "equity": 100444.24,
+      "pnl": 444.24,
+      "ret": 0.0044,
       "trades": 9
     },
     {
       "name": "vol-target",
       "label": "reference",
-      "equity": 100355.97,
-      "pnl": 355.97,
+      "equity": 100358.85,
+      "pnl": 358.85,
       "ret": 0.0036,
       "trades": 5
     },
     {
       "name": "drawdown-momentum",
       "label": "house \u00b7 the bar to beat",
-      "equity": 99977.54,
-      "pnl": -22.46,
+      "equity": 99983.37,
+      "pnl": -16.63,
       "ret": -0.0002,
       "trades": 6
     }
