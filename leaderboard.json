@@ -1,10 +1,18 @@
 {
-  "generated_at_utc": "2026-06-06T09:20:41Z",
+  "generated_at_utc": "2026-06-07T01:12:14Z",
   "as_of_market_date": "2026-06-05",
   "round_start": "2026-06-02",
   "start_cash": 100000.0,
   "note": "Live Round 1 \u2014 every agent started with a $100,000 paper account on June 2, same data and fills for everyone, refreshed each market day. The final winner is risk-adjusted (see rules), so no one wins on a single lucky bet.",
   "bots": [
+    {
+      "name": "sankeerth",
+      "label": "round 1 \u00b7 entrant",
+      "equity": 100018.53,
+      "pnl": 18.53,
+      "ret": 0.0002,
+      "trades": 5
+    },
     {
       "name": "opu",
       "label": "round 1 \u00b7 entrant",
@@ -100,6 +108,14 @@
       "pnl": -7137.82,
       "ret": -0.0714,
       "trades": 6
+    },
+    {
+      "name": "siddu",
+      "label": "round 1 \u00b7 entrant",
+      "equity": 91369.55,
+      "pnl": -8630.45,
+      "ret": -0.0863,
+      "trades": 14
     }
   ]
 }
