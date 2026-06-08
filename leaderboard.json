@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-07T19:00:42Z",
+  "generated_at_utc": "2026-06-08T13:23:27Z",
   "as_of_market_date": "2026-06-05",
   "round_start": "2026-06-02",
   "start_cash": 100000.0,
@@ -36,6 +36,14 @@
       "pnl": -2419.2,
       "ret": -0.0242,
       "trades": 6
+    },
+    {
+      "name": "zaid",
+      "label": "round 1 \u00b7 entrant",
+      "equity": 97060.17,
+      "pnl": -2939.83,
+      "ret": -0.0294,
+      "trades": 8
     },
     {
       "name": "dual-momentum-rotation",
@@ -76,14 +84,6 @@
       "pnl": -5111.42,
       "ret": -0.0511,
       "trades": 9
-    },
-    {
-      "name": "zaid",
-      "label": "round 1 \u00b7 entrant",
-      "equity": 94009.05,
-      "pnl": -5990.95,
-      "ret": -0.0599,
-      "trades": 7
     },
     {
       "name": "robert",
