@@ -23,16 +23,16 @@ from typing import Any
 # Universe: broad ETFs + sectors + mega-caps
 RISK_ON_ETFS = ("SPY", "QQQ", "DIA", "IWM", "SMH")
 SECTORS = ("XLK", "XLF", "XLE", "XLV", "XLI", "XLY", "XLC", "XLRE")
-MEGA_CAPS = ("AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "TSLA")
-RISK_ON_NAMES = RISK_ON_ETFS + SECTORS + MEGA_CAPS
+# Removed MEGA_CAPS: individual stocks add idiosyncratic risk that hurts Calmar
+RISK_ON_NAMES = RISK_ON_ETFS + SECTORS
 
-DEFENSIVE = ("XLP", "XLU", "XLV", "XLE", "GLD", "TLT")
-HARD_BRAKE_BASKET = ("XLP", "XLU", "GLD")
+DEFENSIVE = ("XLP", "XLU", "XLV", "XLI")        # confirmed universe ETFs only; removed GLD/TLT
+HARD_BRAKE_BASKET = ("XLP", "XLU", "XLV")        # staples + utilities + health = safest trio
 
 # ─── Core Knobs ───
-NAME_CAP = 0.13               # no single position above 13%
+NAME_CAP = 0.12               # no single position above 12% (was 13%)
 GROSS_MAX = 0.95              # total gross exposure cap
-TOP_N_MOMENTUM = 5            # hold top 5 winners
+TOP_N_MOMENTUM = 6            # hold top 6 winners (was 5) — better diversification
 REBALANCE_DAYS = 5            # rebalance every N days
 DRIFT_LIMIT = 0.28            # force rebalance if any position drifts above this
 MIN_TRADE_PCT = 0.012         # skip trades smaller than 1.2% of equity
@@ -47,10 +47,10 @@ PORT_VOL_MIN = 0.05           # never scale below 5% portfolio vol
 PORT_VOL_MAX = 0.35           # never scale above 35% portfolio vol
 
 # ─── Brake Thresholds (circuit breakers for crashes) ───
-BRAKE_1_DAY_DROP = -0.020     # QQQ falls 2% in 1 day → hard brake
-BRAKE_3_DAY_DROP = -0.040     # QQQ falls 4% in 3 days → hard brake
-BRAKE_VOL_10D = 0.40          # 10-day vol exceeds 40% annualized → hard brake
-BRAKE_COOLDOWN = 3            # stay in defensive for 3 days after hard brake
+BRAKE_1_DAY_DROP = -0.035     # QQQ falls 3.5% in 1 day → hard brake (was -2%, too sensitive)
+BRAKE_3_DAY_DROP = -0.060     # QQQ falls 6% in 3 days → hard brake (was -4%)
+BRAKE_VOL_10D = 0.50          # 10-day vol exceeds 50% annualized → hard brake (was 40%)
+BRAKE_COOLDOWN = 2            # stay defensive for 2 days after brake (was 3)
 
 # ─── Panic State (Daniel-Moskowitz panic signature) ───
 PANIC_BEAR_THRESHOLD = -0.10  # SPY down 10% over 6 months
@@ -58,9 +58,9 @@ PANIC_VOL_THRESHOLD = 0.30    # SPY vol above 30% annualized
 PANIC_GROSS_CAP = 0.25        # cap gross exposure to 25% during panic
 
 # ─── Equity Drawdown Governor (self-limiting mechanism) ───
-DD_TIER_1_THRESHOLD = 0.015   # -1.5% → scale to 60% of normal
-DD_TIER_2_THRESHOLD = 0.025   # -2.5% → scale to 30% of normal
-DD_TIER_3_THRESHOLD = 0.040   # -4.0% → scale to 10% of normal
+DD_TIER_1_THRESHOLD = 0.030   # -3.0% → scale to 65% of normal (was -1.5% → 60%)
+DD_TIER_2_THRESHOLD = 0.055   # -5.5% → scale to 35% of normal (was -2.5% → 30%)
+DD_TIER_3_THRESHOLD = 0.080   # -8.0% → scale to 10% of normal (was -4.0% → 10%)
 
 # ─── Regime Confirmation (asymmetric: slow to risk-on, fast to risk-off) ───
 CONFIRM_ENTER_RISK_ON = 2     # need 2 consecutive days of risk-on signal
@@ -287,9 +287,9 @@ def _gross_scale_for_drawdown(dd: float) -> float:
     if dd < DD_TIER_1_THRESHOLD:
         return 1.0
     elif dd < DD_TIER_2_THRESHOLD:
-        return 0.60
+        return 0.65
     elif dd < DD_TIER_3_THRESHOLD:
-        return 0.30
+        return 0.35
     else:
         return 0.10
 
@@ -387,6 +387,12 @@ def _target_weights(market_state: dict[str, list[dict[str, Any]]]) -> dict[str, 
     
     if _brake_cooldown > 0:
         _brake_cooldown -= 1
+        # Even after cooldown expires, require SPY to be above 10-day SMA before re-entering
+        if _brake_cooldown == 0:
+            spy = _closes(market_state.get("SPY") or [])
+            spy_sma10 = _sma(spy, 10)
+            if spy_sma10 is not None and spy and spy[-1] < spy_sma10:
+                _brake_cooldown = 1  # extend cooldown 1 more day
         return _target_weights_defensive(market_state)
     
     if _check_panic_state(market_state):
