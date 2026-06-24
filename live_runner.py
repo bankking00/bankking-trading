@@ -129,7 +129,7 @@ ENTRY = {
     "rohan": "2026-06-15", "dev": "2026-06-19", "deepika": "2026-06-15",
     "om": "2026-06-17", "raam": "2026-06-17",
     "navika": "2026-06-18", "yuva": "2026-06-18", "shivkumar": "2026-06-17",
-    "sham": "2026-06-19", "rishchith": "2026-06-20",
+    "sham": "2026-06-24", "rishchith": "2026-06-20",
 }
 CHART_START = "2026-06-01"   # common x-axis for the illustrative race chart (Round 1 open)
 SLIP_EQUITY = 0.0005
